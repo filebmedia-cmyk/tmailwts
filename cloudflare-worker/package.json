@@ -5,6 +5,7 @@
   "main": "worker.js",
   "type": "module",
   "scripts": {
+    "build": "esbuild worker.js --bundle --format=esm --target=es2022 --outfile=worker.bundle.js",
     "deploy": "wrangler deploy"
   },
   "dependencies": {

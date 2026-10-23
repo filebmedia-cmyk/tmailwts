@@ -1,8 +1,8 @@
 export const DEFAULT_SETTINGS = {
   brandName: 'TMail Bot & Endpoint Engine',
   brandTagline: 'High-speed Disposable Email & OTP Extraction API for Bots and QA Automation',
-  defaultDomain: 'tmailku.space',
-  fallbackDomains: ['tmailku.space', 'tmailku.shop', 'mail.tempbox.io', 'quickinbox.dev'],
+  defaultDomain: 'oursastore.com',
+  fallbackDomains: ['oursastore.com'],
   ttlMinutes: 60, // 1 hour retention by default
   defaultAdminUsername: 'admin',
   defaultAdminPassword: 'admin123',

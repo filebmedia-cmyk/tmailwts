@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     if (!domainName || !domainName.includes('.')) {
       return NextResponse.json({
         success: false,
-        error: 'Please provide a valid domain name (e.g. tmailku.space)',
+        error: 'Please provide a valid domain name (e.g. oursastore.com)',
       }, { status: 400 });
     }
 

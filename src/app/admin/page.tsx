@@ -496,7 +496,7 @@ export default function AdminPage() {
 
   // Code generator dynamic values
   const activeKeyForCode = selectedKeyForTest || keys[0]?.key || 'tm_live_your_api_key';
-  const activeDomainForCode = selectedDomainForTest || domains[0]?.domain || 'tmailku.space';
+  const activeDomainForCode = selectedDomainForTest || domains[0]?.domain || 'oursastore.com';
 
   const snippets = {
     python: `# Python 3 Bot (requests)

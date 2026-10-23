@@ -180,13 +180,10 @@ export default function MailboxPage({ initialAddress }: MailboxPageProps = {}) {
       console.error(e);
     }
     const fallback = [
-      { domain: 'tmailku.shop', isDefault: true },
-      { domain: 'gmailo.my.id', isDefault: false },
-      { domain: 'capcvt.cyou', isDefault: false },
-      { domain: 'productme.my.id', isDefault: false },
+      { domain: 'oursastore.com', isDefault: true },
     ];
     setDomains(fallback);
-    setSelectedDomain('tmailku.shop');
+    setSelectedDomain('oursastore.com');
     return fallback;
   };
 

@@ -118,7 +118,16 @@ export async function repoGetSettings(): Promise<SystemSettingsDocument> {
   const { db, isInMemory } = await getDb();
   if (!isInMemory && db) {
     const found = await db.collection<SystemSettingsDocument>('settings').findOne({ key: 'system_settings' });
-    if (found) return found;
+    if (found) {
+      if (found.defaultDomain === 'tmailku.space') {
+        found.defaultDomain = DEFAULT_SETTINGS.defaultDomain;
+        await db.collection<SystemSettingsDocument>('settings').updateOne(
+          { key: 'system_settings' },
+          { $set: { defaultDomain: DEFAULT_SETTINGS.defaultDomain } }
+        );
+      }
+      return found;
+    }
     // initialize if not found
     await db.collection<SystemSettingsDocument>('settings').insertOne(memoryStore.settings);
     return memoryStore.settings;
@@ -279,7 +288,25 @@ export async function repoListDomains(): Promise<DomainDocument[]> {
   const { db, isInMemory } = await getDb();
   if (!isInMemory && db) {
     const list = await db.collection<DomainDocument>('domains').find({}).toArray();
-    if (list.length > 0) return list;
+    if (list.length > 0) {
+      const targetDefault = DEFAULT_SETTINGS.defaultDomain;
+      const exists = list.some(d => d.domain === targetDefault);
+      if (!exists) {
+        const newDoc: DomainDocument = {
+          domain: targetDefault,
+          isActive: true,
+          isDefault: true,
+          createdAt: new Date(),
+        };
+        await db.collection<DomainDocument>('domains').insertOne(newDoc);
+        await db.collection<DomainDocument>('domains').updateMany(
+          { domain: { $ne: targetDefault } },
+          { $set: { isDefault: false } }
+        );
+        return [newDoc, ...list.map(d => ({ ...d, isDefault: false }))];
+      }
+      return list;
+    }
     // Seed default domains if empty
     const defaults = memoryStore.domains;
     await db.collection<DomainDocument>('domains').insertMany(defaults);

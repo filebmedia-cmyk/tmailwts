@@ -1,7 +1,11 @@
-name = "tmail-email-worker"
+name = "tmail-oursastore-worker"
 main = "worker.js"
 compatibility_date = "2024-04-01"
 
 [vars]
-WEBHOOK_URL = "https://your-tmail.vercel.app/api/webhook/email"
+# Ganti dengan URL domain atau Vercel tempat Next.js Anda berjalan:
+# Contoh jika menggunakan domain oursastore.com langsung: https://oursastore.com/api/webhook/email
+# Atau jika menggunakan subdomain/Vercel: https://nama-projek.vercel.app/api/webhook/email
+WEBHOOK_URL = "https://oursastore.com/api/webhook/email"
 WEBHOOK_SECRET = "tm_whsec_cloudflare_secret_2026"
+

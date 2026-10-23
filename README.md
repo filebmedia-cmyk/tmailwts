@@ -70,7 +70,7 @@ Semua endpoint berikut memerlukan header:
 // Body (opsional)
 {
   "username": "akunbot1", // Kosongkan untuk username acak
-  "domain": "tmailku.shop" // Kosongkan untuk domain default
+  "domain": "oursastore.com" // Kosongkan untuk domain default
 }
 ```
 
@@ -81,7 +81,7 @@ Semua endpoint berikut memerlukan header:
 {
   "success": true,
   "hasEmail": true,
-  "address": "akunbot1@tmailku.shop",
+  "address": "akunbot1@oursastore.com",
   "from": "security@service.com",
   "subject": "Kode Verifikasi Anda adalah 591240",
   "otpCode": "591240",

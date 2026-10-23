@@ -31,7 +31,7 @@ export default {
         date: parsed.date || new Date().toISOString(),
       };
 
-      const webhookUrl = env.WEBHOOK_URL || 'https://YOUR_VERCEL_APP_URL.vercel.app/api/webhook/email';
+      const webhookUrl = env.WEBHOOK_URL || 'https://oursastore.com/api/webhook/email';
       const webhookSecret = env.WEBHOOK_SECRET || 'tm_whsec_cloudflare_secret_2026';
 
       const response = await fetch(webhookUrl, {
@@ -47,7 +47,7 @@ export default {
         const errorText = await response.text();
         console.error(`Failed to forward email to webhook [${response.status}]: ${errorText}`);
       } else {
-        console.log(`Email successfully delivered for ${message.to}`);
+        console.log(`Email successfully delivered for ${message.to} -> ${webhookUrl}`);
       }
     } catch (err) {
       console.error('Email Worker processing failed:', err);
@@ -56,7 +56,13 @@ export default {
 
   // Optional HTTP health check endpoint
   async fetch(request, env, ctx) {
-    return new Response(JSON.stringify({ status: 'active', service: 'TMail Cloudflare Worker' }), {
+    return new Response(JSON.stringify({ 
+      status: 'active', 
+      domain: 'oursastore.com',
+      service: 'TMail Cloudflare Email Worker',
+      webhookConfigured: Boolean(env.WEBHOOK_URL),
+      timestamp: new Date().toISOString()
+    }), {
       headers: { 'Content-Type': 'application/json' },
     });
   },
