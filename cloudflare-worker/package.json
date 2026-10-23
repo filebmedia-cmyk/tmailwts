@@ -1,0 +1,16 @@
+{
+  "name": "tmail-cloudflare-worker",
+  "version": "1.0.0",
+  "description": "Cloudflare Email Worker for parsing incoming TMail emails and forwarding to Vercel",
+  "main": "worker.js",
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "postal-mime": "^2.1.6"
+  },
+  "devDependencies": {
+    "wrangler": "^3.50.0"
+  }
+}

@@ -1,0 +1,7 @@
+name = "tmail-email-worker"
+main = "worker.js"
+compatibility_date = "2024-04-01"
+
+[vars]
+WEBHOOK_URL = "https://your-tmail.vercel.app/api/webhook/email"
+WEBHOOK_SECRET = "tm_whsec_cloudflare_secret_2026"
